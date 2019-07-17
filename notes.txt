@@ -1,0 +1,2105 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.16 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database test;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use test;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use test;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> use test;
+Database changed
+mysql> CREATE TABLE student (
+    ->
+    ->
+    -> CREATE TABLE student (^C
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE student (
+    -> student_id INT PRIMARY KEY,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> use test;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> show columns from student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use test;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> use test;
+Database changed
+mysql> CREATE TABLE student;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> CREATE TABLE student(
+    -> student_id INT PRIMARY KEY,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESCRIBE student
+    -> ^C
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE student(
+    -> student_id INT PRIMARY KEY,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE student(
+    -> student_id INT PRIMARY KEY,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student ADD gpa DECIMAL(3, 2);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| student_id | int(11)      | NO   | PRI | NULL    |       |
+| name       | varchar(20)  | YES  |     | NULL    |       |
+| major      | varchar(20)  | YES  |     | NULL    |       |
+| gpa        | decimal(3,2) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student DROP COLUMN gpa;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student ADD gpa DECIMAL(3, 2);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| student_id | int(11)      | NO   | PRI | NULL    |       |
+| name       | varchar(20)  | YES  |     | NULL    |       |
+| major      | varchar(20)  | YES  |     | NULL    |       |
+| gpa        | decimal(3,2) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student DROP COLUMN gpa;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE student ADD gpa DECIMAL(3, 2);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE STUDENT;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| student_id | int(11)      | NO   | PRI | NULL    |       |
+| name       | varchar(20)  | YES  |     | NULL    |       |
+| major      | varchar(20)  | YES  |     | NULL    |       |
+| gpa        | decimal(3,2) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(1, 'Jack', 'Biology');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO student VALUES (1, 'Jack', 'Biology',,);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',)' at line 1
+mysql> INSERT INTO student VALUES(1, 'Jack', 'Biology');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO student VALUES(1, 'Jack', 'Biology', NULL);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> DESCRIBE student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| student_id | int(11)      | NO   | PRI | NULL    |       |
+| name       | varchar(20)  | YES  |     | NULL    |       |
+| major      | varchar(20)  | YES  |     | NULL    |       |
+| gpa        | decimal(3,2) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student;
++------------+------+---------+------+
+| student_id | name | major   | gpa  |
++------------+------+---------+------+
+|          1 | Jack | Biology | NULL |
++------------+------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE student DROP COLUMN gpa;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student;
++------------+------+---------+
+| student_id | name | major   |
++------------+------+---------+
+|          1 | Jack | Biology |
++------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(2, 'Kate', 'Sociology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | Jack | Biology   |
+|          2 | Kate | Sociology |
++------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | Jack | Biology   |
+|          2 | Kate | Sociology |
++------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO student(student_id, name) VALUES(3, 'Claire');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          1 | Jack   | Biology   |
+|          2 | Kate   | Sociology |
+|          3 | Claire | NULL      |
++------------+--------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO students VALUES(4, 'Jack', 'Biology');
+ERROR 1146 (42S02): Table 'test.students' doesn't exist
+mysql> INSERT INTO student VALUES(4, 'Jack', 'Biology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student VALUES(5, 'Mike', 'Computer Science');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| major      | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | Jack   | Biology          |
+|          2 | Kate   | Sociology        |
+|          3 | Claire | NULL             |
+|          4 | Jack   | Biology          |
+|          5 | Mike   | Computer Science |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> use test;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM student;
+ERROR 1146 (42S02): Table 'test.student' doesn't exist
+mysql> CREATE TABLE student(
+    -> student_id INT,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20),
+    -> PRIMARY KEY(student_id)^C
+mysql> CREATE TABLE student(
+    -> student_id INT,
+    -> name VARCHAR(20) NOT NULL,
+    -> major VARCHAR(20) UNIQUE,
+    -> PRIMARY KEY(student_id)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | int(11)     | NO   | PRI | NULL    |       |
+| name       | varchar(20) | NO   |     | NULL    |       |
+| major      | varchar(20) | YES  | UNI | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(1, 'Jack', 'Biology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+------+---------+
+| student_id | name | major   |
++------------+------+---------+
+|          1 | Jack | Biology |
++------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(2, 'Kate', 'Sociology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | Jack | Biology   |
+|          2 | Kate | Sociology |
++------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(3, NULL, 'Chemistry');
+ERROR 1048 (23000): Column 'name' cannot be null
+mysql> cl scr
+    ->
+    -> ^C
+mysql> ^C
+mysql> SELECT * FROM student;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | Jack | Biology   |
+|          2 | Kate | Sociology |
++------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> clear
+mysql> cls
+    -> ^C
+mysql> ^C
+mysql> INSERT INTO student VALUES(3, 'Jack', 'Biology');
+ERROR 1062 (23000): Duplicate entry 'Biology' for key 'major'
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE student(
+    -> student_id INT,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20) DEFAULT 'undecided'
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+-----------+-------+
+| Field      | Type        | Null | Key | Default   | Extra |
++------------+-------------+------+-----+-----------+-------+
+| student_id | int(11)     | YES  |     | NULL      |       |
+| name       | varchar(20) | YES  |     | NULL      |       |
+| major      | varchar(20) | YES  |     | undecided |       |
++------------+-------------+------+-----+-----------+-------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO student VALUES(1, 'Jack');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE student(
+    -> student_id INT,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20) DEFAULT 'undecided',
+    -> PRIMARY KEY(student_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+-----------+-------+
+| Field      | Type        | Null | Key | Default   | Extra |
++------------+-------------+------+-----+-----------+-------+
+| student_id | int(11)     | NO   | PRI | NULL      |       |
+| name       | varchar(20) | YES  |     | NULL      |       |
+| major      | varchar(20) | YES  |     | undecided |       |
++------------+-------------+------+-----+-----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(1, 'Jack');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO student(student_id, name) VALUES(1, 'Jack');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | Jack | undecided |
++------------+------+-----------+
+1 row in set (0.00 sec)
+
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE student(
+    -> student_id INT AUTO_INCREMENT,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20),
+    -> PRIMARY KEY(student_id)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| student_id | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| major      | varchar(20) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES('Jack', 'Biology');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO student(name, major) VALUES('Jack', 'Biology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+------+---------+
+| student_id | name | major   |
++------------+------+---------+
+|          1 | Jack | Biology |
++------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Kate', 'Sociology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | Jack | Biology   |
+|          2 | Kate | Sociology |
++------------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Claire', 'Chemistry');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Jack', 'Biology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Mike', 'Computer Science');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | Jack   | Biology          |
+|          2 | Kate   | Sociology        |
+|          3 | Claire | Chemistry        |
+|          4 | Jack   | Biology          |
+|          5 | Mike   | Computer Science |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET major = 'Bio'
+    -> WHERE major = 'Biology';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM student;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | Jack   | Bio              |
+|          2 | Kate   | Sociology        |
+|          3 | Claire | Chemistry        |
+|          4 | Jack   | Bio              |
+|          5 | Mike   | Computer Science |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET major = 'Comp Sci'
+    -> WHERE major = 'Computer Science';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> Select * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          1 | Jack   | Bio       |
+|          2 | Kate   | Sociology |
+|          3 | Claire | Chemistry |
+|          4 | Jack   | Bio       |
+|          5 | Mike   | Comp Sci  |
++------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET major = 'Comp Sci'
+    -> WHERE student_id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          1 | Jack   | Bio       |
+|          2 | Kate   | Sociology |
+|          3 | Claire | Chemistry |
+|          4 | Jack   | Comp Sci  |
+|          5 | Mike   | Comp Sci  |
++------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET major = 'Biochemistry'
+    -> WHERE major = 'Bio' || 'Chemistry';
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'Chemistry'
+mysql> UPDATE student
+    -> SET major = 'Biochemistry'
+    -> WHERE major = 'Bio' OR 'Chemistry';
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'Chemistry'
+mysql> UPDATE student
+    -> SET major = 'Biochemistry'
+    -> WHERE major = 'Bio' || major = 'Chemistry';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM student;
++------------+--------+--------------+
+| student_id | name   | major        |
++------------+--------+--------------+
+|          1 | Jack   | Biochemistry |
+|          2 | Kate   | Sociology    |
+|          3 | Claire | Biochemistry |
+|          4 | Jack   | Comp Sci     |
+|          5 | Mike   | Comp Sci     |
++------------+--------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET name = 'Tom', major = 'undecided'
+    -> WHERE student_id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM student;
++------------+--------+--------------+
+| student_id | name   | major        |
++------------+--------+--------------+
+|          1 | Tom    | undecided    |
+|          2 | Kate   | Sociology    |
+|          3 | Claire | Biochemistry |
+|          4 | Jack   | Comp Sci     |
+|          5 | Mike   | Comp Sci     |
++------------+--------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET major = 'undecided';
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 5  Changed: 4  Warnings: 0
+
+mysql> SELECT * FROM studetn;
+ERROR 1146 (42S02): Table 'test.studetn' doesn't exist
+mysql> SELECT * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          1 | Tom    | undecided |
+|          2 | Kate   | undecided |
+|          3 | Claire | undecided |
+|          4 | Jack   | undecided |
+|          5 | Mike   | undecided |
++------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          1 | Tom    | undecided |
+|          2 | Kate   | undecided |
+|          3 | Claire | undecided |
+|          4 | Jack   | undecided |
+|          5 | Mike   | undecided |
++------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM student
+    -> WHERE student_id = 5;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          1 | Tom    | undecided |
+|          2 | Kate   | undecided |
+|          3 | Claire | undecided |
+|          4 | Jack   | undecided |
++------------+--------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM student
+    -> WHERE name = 'Tom' && major = 'undecided';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          2 | Kate   | undecided |
+|          3 | Claire | undecided |
+|          4 | Jack   | undecided |
++------------+--------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> DELETE FROM student;
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> use tables;
+ERROR 1049 (42000): Unknown database 'tables'
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| student_id | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| major      | varchar(20) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE student(
+    -> student_id INT AUTO_INCREMENT,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20),
+    -> PRIMARY KEY(student_id)
+    -> );
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> DROP TABLE student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> REATE TABLE student(
+    ->     -> student_id INT AUTO_INCREMENT,
+    ->     -> name VARCHAR(20),
+    ->     -> major VARCHAR(20),
+    ->     -> PRIMARY KEY(student_id)
+    ->     -> );^C
+mysql> ^C
+mysql> CREATE TABLE student(
+    -> student_id INT AUTO_INCREMENT,
+    -> name VARCHAR(20),
+    -> major VARCHAR(20),
+    -> PRIMARY KEY(student_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Jack', 'Biology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student
+    -> ;
++------------+------+---------+
+| student_id | name | major   |
++------------+------+---------+
+|          1 | Jack | Biology |
++------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Kate', 'Sociology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Claire', 'Chemistry');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Jack', 'Biology');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student(name, major) VALUES('Mike', 'Computer Science');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM student;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | Jack   | Biology          |
+|          2 | Kate   | Sociology        |
+|          3 | Claire | Chemistry        |
+|          4 | Jack   | Biology          |
+|          5 | Mike   | Computer Science |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE student;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| student_id | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(20) | YES  |     | NULL    |                |
+| major      | varchar(20) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT MAJOR FROM student;
++------------------+
+| MAJOR            |
++------------------+
+| Biology          |
+| Sociology        |
+| Chemistry        |
+| Biology          |
+| Computer Science |
++------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT NAME FROM student;
++--------+
+| NAME   |
++--------+
+| Jack   |
+| Kate   |
+| Claire |
+| Jack   |
+| Mike   |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name, major FROM student;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| Jack   | Biology          |
+| Kate   | Sociology        |
+| Claire | Chemistry        |
+| Jack   | Biology          |
+| Mike   | Computer Science |
++--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT student.major FROM student;
++------------------+
+| major            |
++------------------+
+| Biology          |
+| Sociology        |
+| Chemistry        |
+| Biology          |
+| Computer Science |
++------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name, major
+    -> FROM student
+    -> ORDER BY name;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| Claire | Chemistry        |
+| Jack   | Biology          |
+| Jack   | Biology          |
+| Kate   | Sociology        |
+| Mike   | Computer Science |
++--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name, major
+    -> FROM student
+    -> ORDER BY major;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| Jack   | Biology          |
+| Jack   | Biology          |
+| Claire | Chemistry        |
+| Mike   | Computer Science |
+| Kate   | Sociology        |
++--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name, major
+    -> FROM student
+    -> ORDER BY major DESC;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| Kate   | Sociology        |
+| Mike   | Computer Science |
+| Claire | Chemistry        |
+| Jack   | Biology          |
+| Jack   | Biology          |
++--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name, major
+    -> FROM student
+    -> ORDER BY student_id DESC;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| Mike   | Computer Science |
+| Jack   | Biology          |
+| Claire | Chemistry        |
+| Kate   | Sociology        |
+| Jack   | Biology          |
++--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student_id
+    -> ^C
+mysql> SELECT *
+    -> FROM student
+    -> ORDER BY student_id DESC;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          5 | Mike   | Computer Science |
+|          4 | Jack   | Biology          |
+|          3 | Claire | Chemistry        |
+|          2 | Kate   | Sociology        |
+|          1 | Jack   | Biology          |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student
+    -> ORDER BY major, student_id;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | Jack   | Biology          |
+|          4 | Jack   | Biology          |
+|          3 | Claire | Chemistry        |
+|          5 | Mike   | Computer Science |
+|          2 | Kate   | Sociology        |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+mysql> DESCRIBE EMPLOYEE
+    -> ;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| emp_id | int(11) | NO   | PRI | NULL    |       |
++--------+---------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> DESCRIBE employee
+    -> ;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| emp_id | int(11) | NO   | PRI | NULL    |       |
++--------+---------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> DROP TABLE employee;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE employee(
+    -> emp_id INT PRIMARY KEY
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE employee AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER_TABLE employee ADD COLUMN firstname VARCHAR(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ALTER_TABLE employee ADD COLUMN firstname VARCHAR(20)' at line 1
+mysql> ALTER TABLE employeE
+    -> ^C
+mysql> ALTER TABLE employee
+    -> ADD COLUMN first_name VARCHAR(20)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 3
+mysql> ALTER TABLE employee
+    -> ADD COLUMN first_name VARCHAR(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE employee
+    -> ;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ADD COLUMN last_name VARCHAR(20);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> ADD birth_date DATE,
+    -> sex VARCHAR(2),
+    -> salary INT,
+    -> super_id INT,
+    -> branch_id INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sex VARCHAR(2),
+salary INT,
+super_id INT,
+branch_id INT' at line 3
+mysql> ALTER TABLE employee
+    -> ADD birth_date DATE;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> ADD sex VARCHAR(2);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> ADD salary INT;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> ADD super_id INT;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> ADD branch_id INT;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  |     | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| employee       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE branch;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> CREATE TABLE branch(
+    -> branch_id INT AUTO_INCREMENT
+    -> );
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> CREATE TABLE branch(
+    -> branch_id INT AUTO_INCREMENT PRIMARY KEY
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE branch;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| branch_id | int(11) | NO   | PRI | NULL    | auto_increment |
++-----------+---------+------+-----+---------+----------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  |     | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE branch
+    -> ADD branch_name VARCHAR(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE branch
+    -> ADD mgr_id INT;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE branch
+    -> ADD mgr_start_date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE branch
+    -> ADD mrg_start_date DATE;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE branch
+    -> ;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| branch_id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| branch_name    | varchar(20) | YES  |     | NULL    |                |
+| mgr_id         | int(11)     | YES  |     | NULL    |                |
+| mrg_start_date | date        | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE client(
+    -> client_id INT PRIMARY KEY,
+    -> client_name VARCHAR(50),
+    -> branch_id INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER TABLE client AUTO_INCREMENT=400;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE client;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| client_id   | int(11)     | NO   | PRI | NULL    |       |
+| client_name | varchar(50) | YES  |     | NULL    |       |
+| branch_id   | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE client
+    -> ALTER COLUMN client_id AUTO_INCREMENT=400;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO_INCREMENT=400' at line 2
+mysql> ALTER COLUMN client_id AUTO_INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN client_id AUTO_INCREMENT' at line 1
+mysql> ALTER TABLE client AUTO_INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> CREATE TABLE works_with(
+    -> emp_id INT,
+    -> client_id INT,
+    -> total_sales INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | YES  |     | NULL    |       |
+| client_id   | int(11) | YES  |     | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE_TABLE branch_supplier(
+    -> branch_id INT,
+    -> supplier_name VARCHAR(50),
+    -> supply_type VARCHAR(50)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE_TABLE branch_supplier(
+branch_id INT,
+supplier_name VARCHAR(50),
+supply_t' at line 1
+mysql> CREATE TABLE branch_supplier(
+    -> branch_id INT,
+    -> supplier_name VARCHAR(50),
+    -> supply_type VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | YES  |     | NULL    |       |
+| supplier_name | varchar(50) | YES  |     | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO branch
+    -> VALUESc^C
+mysql> INSERT INTO employee
+    -> VALUES('David', 'Wallace', '1967-11-17', 'M', 250000, NULL, 1);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  |     | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ALTER COLUMN emp_id AUTO_INCREMENT=100;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO_INCREMENT=100' at line 2
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  |     | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee AUTO_INCREMENT = 100;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  |     | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO employee(first_name, last_name, birth_date, sex, salary, super_id, branch_id)
+    -> VALUES('David', 'Wallace', '1967-11-17', 'M', 250000, NULL, 1);
+ERROR 1364 (HY000): Field 'emp_id' doesn't have a default value
+mysql> ALTER TABLE employee,
+    -> ALTER COLUMN emp_id AUTO_INCREMENT = 100;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+ALTER COLUMN emp_id AUTO_INCREMENT = 100' at line 1
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ALTER COLUMN emp_id DEFAULT AUTO_INCREMENT = 100;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DEFAULT AUTO_INCREMENT = 100' at line 2
+mysql> INSERT INTO employee
+    -> VALUES(100, 'David', 'Wallace', '1967-11-17', 'M', 250000, NULL, 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM employee;
++--------+------------+-----------+------------+------+--------+----------+-----------+
+| emp_id | first_name | last_name | birth_date | sex  | salary | super_id | branch_id |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+|    100 | David      | Wallace   | 1967-11-17 | M    | 250000 |     NULL |         1 |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO employee
+    -> VALUES (101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1)
+    -> ^C
+mysql> INSERT INTO employee
+    -> VALUES (101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1),
+    -> ('Michael', 'Scott', '1964-03-15', 'M', 75000, 100, 2);
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> INSERT INTO employee
+    -> ('Michael', 'Scott', '1964-03-15', 'M', 75000, 100, 2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Michael', 'Scott', '1964-03-15', 'M', 75000, 100, 2)' at line 2
+mysql> INSERT INTO employee
+    -> VALUES (101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1),
+    -> (101, 'Michael', 'Scott', '1964-03-15', 'M', 75000, 100, 2);
+ERROR 1062 (23000): Duplicate entry '101' for key 'PRIMARY'
+mysql> INSERT INTO employee
+    -> VALUES (101, 'Michael', 'Scott', '1964-03-15', 'M', 75000, 100, 2),
+    -> ^C
+mysql> INSERT INTO employee
+    -> VALUES (102, 'Michael', 'Scott', '1964-03-15', 'M', 75000, 100, 2),
+    -> (103, 'Angela', 'Martin', '1971-06-25', 'F', 63000, 102, 2);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee;
++--------+------------+-----------+------------+------+--------+----------+-----------+
+| emp_id | first_name | last_name | birth_date | sex  | salary | super_id | branch_id |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+|    100 | David      | Wallace   | 1967-11-17 | M    | 250000 |     NULL |         1 |
+|    102 | Michael    | Scott     | 1964-03-15 | M    |  75000 |      100 |         2 |
+|    103 | Angela     | Martin    | 1971-06-25 | F    |  63000 |      102 |         2 |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO employee
+    -> VALUES (104, 'Kelly', 'Kapoor', '1980-02-05', 'F', 55000, 102, 2),
+    -> (105, 'Stanley', 'Hudson', '1958-02-19', 'M', 69000, 102, 2),
+    -> (106, 'Josh', 'Porter', '1969-09-05', 'M', 78000, 100, 3),
+    -> (107, 'Andy', 'Bernard', '1973-07-22', 'M', 65000, 106, 3),
+    -> (108, 'Jim', 'Halpert', '1978-10-01', 'M', 71000, 106, 3);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee
+    -> ;
++--------+------------+-----------+------------+------+--------+----------+-----------+
+| emp_id | first_name | last_name | birth_date | sex  | salary | super_id | branch_id |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+|    100 | David      | Wallace   | 1967-11-17 | M    | 250000 |     NULL |         1 |
+|    102 | Michael    | Scott     | 1964-03-15 | M    |  75000 |      100 |         2 |
+|    103 | Angela     | Martin    | 1971-06-25 | F    |  63000 |      102 |         2 |
+|    104 | Kelly      | Kapoor    | 1980-02-05 | F    |  55000 |      102 |         2 |
+|    105 | Stanley    | Hudson    | 1958-02-19 | M    |  69000 |      102 |         2 |
+|    106 | Josh       | Porter    | 1969-09-05 | M    |  78000 |      100 |         3 |
+|    107 | Andy       | Bernard   | 1973-07-22 | M    |  65000 |      106 |         3 |
+|    108 | Jim        | Halpert   | 1978-10-01 | M    |  71000 |      106 |         3 |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO branch
+    -> ^C
+mysql> DESCRIBE branch;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| branch_id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| branch_name    | varchar(20) | YES  |     | NULL    |                |
+| mgr_id         | int(11)     | YES  |     | NULL    |                |
+| mrg_start_date | date        | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO branch(branch_name, mgr_id, mgr_start_date)
+    -> VALUES ('Corporate', 100, '2006-02-09'),
+    -> ('Scranton', 102, '1992-04-06'),
+    -> ('Stamford', 106, '1998-02-13');
+ERROR 1054 (42S22): Unknown column 'mgr_start_date' in 'field list'
+mysql> DESCRIBE branch;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| branch_id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| branch_name    | varchar(20) | YES  |     | NULL    |                |
+| mgr_id         | int(11)     | YES  |     | NULL    |                |
+| mrg_start_date | date        | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE branch RENAME COLUMN 'mrg_start_date' TO 'mgr_start_date';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''mrg_start_date' TO 'mgr_start_date'' at line 1
+mysql> ALTER TABLE "branch"
+    -> CHANGE "mrg_start_date" "mgr_start_date";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"branch"
+CHANGE "mrg_start_date" "mgr_start_date"' at line 1
+mysql> ALTER TABLE branch
+    -> DROP COLUMN mrg_start_date;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE branch
+    -> ADD COLUMN mgr_start_date DATE;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE branch;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| branch_id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| branch_name    | varchar(20) | YES  |     | NULL    |                |
+| mgr_id         | int(11)     | YES  |     | NULL    |                |
+| mgr_start_date | date        | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> INSERT INTO branch
+    -> VALUES('Corporate', 100, '2006-02-09'),
+    -> ('Scranton', 102, '1992-04-06'),
+    -> ('Stamford', 106, '1998-02-13');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO branch (branch_name, mgr_id, mgr_start_date)
+    -> VALUES ('Corporate', 100, '2006-02-09'),
+    -> ('Scranton', 102, '1992-04-06'),
+    -> ('Stamford', 106, '1998-02-13');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM branch;
++-----------+-------------+--------+----------------+
+| branch_id | branch_name | mgr_id | mgr_start_date |
++-----------+-------------+--------+----------------+
+|         1 | Corporate   |    100 | 2006-02-09     |
+|         2 | Scranton    |    102 | 1992-04-06     |
+|         3 | Stamford    |    106 | 1998-02-13     |
++-----------+-------------+--------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO client
+    -> VALUES (400, 'Dunmore Highschool', 2),
+    -> (401, 'Lackawanna County', 2),
+    -> (402, 'FedEx', 3),
+    -> (403, 'John Daly Law, LLC', 3),
+    -> (404, 'Scranton Whitepages', 2),
+    -> (405, 'Times Newspaper', 3),
+    -> (406, 'FedEx', 2);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM client;
++-----------+---------------------+-----------+
+| client_id | client_name         | branch_id |
++-----------+---------------------+-----------+
+|       400 | Dunmore Highschool  |         2 |
+|       401 | Lackawanna County   |         2 |
+|       402 | FedEx               |         3 |
+|       403 | John Daly Law, LLC  |         3 |
+|       404 | Scranton Whitepages |         2 |
+|       405 | Times Newspaper     |         3 |
+|       406 | FedEx               |         2 |
++-----------+---------------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO works_with
+    -> VALUES^C
+mysql> DESCRIBE works_with
+    -> ;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | YES  |     | NULL    |       |
+| client_id   | int(11) | YES  |     | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE works_with ALTER COLUMN emp_id PRIMARY KEY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY KEY' at line 1
+mysql> ALTER TABLE works_with,
+    -> ADD PRIMARY KEY (emp_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+ADD PRIMARY KEY (emp_id)' at line 1
+mysql> ALTER TABLE works_with
+    -> PRIMARY KEY(emp_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY KEY(emp_id)' at line 2
+mysql> ALTER TABLE works_with ADD PRIMARY KEY (emp_id);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | NO   | PRI | NULL    |       |
+| client_id   | int(11) | YES  |     | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE works_with ADD PRIMARY KEY (client_id);
+ERROR 1068 (42000): Multiple primary key defined
+mysql> DESCRIBE branch;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| branch_id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| branch_name    | varchar(20) | YES  |     | NULL    |                |
+| mgr_id         | int(11)     | YES  |     | NULL    |                |
+| mgr_start_date | date        | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> DESCRIBE client;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| client_id   | int(11)     | NO   | PRI | NULL    |       |
+| client_name | varchar(50) | YES  |     | NULL    |       |
+| branch_id   | int(11)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | YES  |     | NULL    |       |
+| supplier_name | varchar(50) | YES  |     | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE branch_supplier,
+    -> ADD PRIMARY KEY (branch_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+ADD PRIMARY KEY (branch_id)' at line 1
+mysql> ALTER TABLE branch_supplier ADD PRIMARY KEY (branch_id);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | NO   | PRI | NULL    |       |
+| supplier_name | varchar(50) | YES  |     | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE works_with
+    -> DROP PRIMARY KEY;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE works_with
+    -> ADD PRIMARY KEY (emp_id, client_id);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | NO   | PRI | NULL    |       |
+| client_id   | int(11) | NO   | PRI | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE branch_supplier
+    -> DROP PRIMARY KEY;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE branch_supplier
+    -> ADD PRIMARY KEY (branch_id, supplier_name);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | NO   | PRI | NULL    |       |
+| supplier_name | varchar(50) | NO   | PRI | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM works_with;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO works_with
+    -> VALUES (105, 400, 55000),
+    -> (102, 401, 267000),
+    -> (108, 402, 22500),
+    -> (107, 403, 5000),
+    -> (108, 403, 12000),
+    -> (105, 404, 33000),
+    -> (107, 405, 26000),
+    -> (102, 406, 15000),
+    -> (105, 406, 130000);
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM works_with;
++--------+-----------+-------------+
+| emp_id | client_id | total_sales |
++--------+-----------+-------------+
+|    102 |       401 |      267000 |
+|    102 |       406 |       15000 |
+|    105 |       400 |       55000 |
+|    105 |       404 |       33000 |
+|    105 |       406 |      130000 |
+|    107 |       403 |        5000 |
+|    107 |       405 |       26000 |
+|    108 |       402 |       22500 |
+|    108 |       403 |       12000 |
++--------+-----------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> INSERT INTO branch_supplier
+    -> VALUES (2, 'Hammer Mill', 'Paper'),
+    -> (2, 'Uni-ball', 'Writing Utensils'),
+    -> (3, 'Patriot Paper', 'Paper'),
+    -> (2, 'J.T. Forms & Labels', 'Custom Forms'),
+    -> (3, 'Uni-ball', 'Writing Utensils'),
+    -> (3, 'Hammer Mill', 'Paper'),
+    -> (3, 'Stamford Labels', 'Custom Forms');
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | NO   | PRI | NULL    |       |
+| supplier_name | varchar(50) | NO   | PRI | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM branch_supplier;
++-----------+---------------------+------------------+
+| branch_id | supplier_name       | supply_type      |
++-----------+---------------------+------------------+
+|         2 | Hammer Mill         | Paper            |
+|         2 | J.T. Forms & Labels | Custom Forms     |
+|         2 | Uni-ball            | Writing Utensils |
+|         3 | Hammer Mill         | Paper            |
+|         3 | Patriot Paper       | Paper            |
+|         3 | Stamford Labels     | Custom Forms     |
+|         3 | Uni-ball            | Writing Utensils |
++-----------+---------------------+------------------+
+7 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> DROP TABLE branch
+    -> ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE branch(
+    -> branch_id INT PRIMARY KEY,
+    -> branch_name VARCHAR(40),
+    -> mgr_id INT,
+    -> mgr_start_date DATE,
+    -> FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 6
+mysql> CREATE TABLE branch(
+    -> branch_id INT PRIMARY KEY,
+    -> branch_name VARCHAR(40),
+    -> mgr_id INT,
+    -> mgr_start_date DATE,
+    -> FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESCRIBE branch;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| branch_id      | int(11)     | NO   | PRI | NULL    |       |
+| branch_name    | varchar(40) | YES  |     | NULL    |       |
+| mgr_id         | int(11)     | YES  | MUL | NULL    |       |
+| mgr_start_date | date        | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ADD FOREIGN KEY(branch_id)
+    -> REFERENCES branch(branch_id)
+    -> ON DELETE SET NULL;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`test`.`#sql-5854_b`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`branch_id`) ON DELETE SET NULL)
+mysql> ALTER TABLE employee
+    -> UPDATE FOREIGN KEY(branch_id)
+    -> REFERENCES branch(branch_id)
+    -> ON DELETE SET NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE FOREIGN KEY(branch_id)
+REFERENCES branch(branch_id)
+ON DELETE SET NULL' at line 2
+mysql> SELECT * FROM employee
+    -> ;
++--------+------------+-----------+------------+------+--------+----------+-----------+
+| emp_id | first_name | last_name | birth_date | sex  | salary | super_id | branch_id |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+|    100 | David      | Wallace   | 1967-11-17 | M    | 250000 |     NULL |         1 |
+|    102 | Michael    | Scott     | 1964-03-15 | M    |  75000 |      100 |         2 |
+|    103 | Angela     | Martin    | 1971-06-25 | F    |  63000 |      102 |         2 |
+|    104 | Kelly      | Kapoor    | 1980-02-05 | F    |  55000 |      102 |         2 |
+|    105 | Stanley    | Hudson    | 1958-02-19 | M    |  69000 |      102 |         2 |
+|    106 | Josh       | Porter    | 1969-09-05 | M    |  78000 |      100 |         3 |
+|    107 | Andy       | Bernard   | 1973-07-22 | M    |  65000 |      106 |         3 |
+|    108 | Jim        | Halpert   | 1978-10-01 | M    |  71000 |      106 |         3 |
++--------+------------+-----------+------------+------+--------+----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL' at line 1
+mysql> ALTER TABLE employee
+    -> ADD FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`test`.`#sql-5854_b`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`branch_id`) ON DELETE SET NULL)
+mysql> ^C
+mysql> DESCRIBE BRANCH;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| branch_id      | int(11)     | NO   | PRI | NULL    |       |
+| branch_name    | varchar(40) | YES  |     | NULL    |       |
+| mgr_id         | int(11)     | YES  | MUL | NULL    |       |
+| mgr_start_date | date        | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ADD FOREIGN KEY (super_id)
+    -> REFERENCES employee(emp_id)
+    -> ON DELETE SET NULL;
+Query OK, 8 rows affected (0.08 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> ADD FOREIGN KEY (branch_id)
+    -> REFERENCES branch(branch_id)
+    -> ON DELETE SET NULL;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`test`.`#sql-5854_b`, CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`branch_id`) ON DELETE SET NULL)
+mysql> ALTER TABLE client
+    -> ADD FOREIGN KEY (branch_id)
+    -> REFERENCES branch(branch_id)
+    -> ON DELETE SET NULL;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`test`.`#sql-5854_b`, CONSTRAINT `client_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`branch_id`) ON DELETE SET NULL)
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  | MUL | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> DROP TABLE works_with;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE works_with(
+    -> emp_id INT,
+    -> client_id INT,
+    -> total_sales INT,
+    -> PRIMARY KEY(emp_id, client_id),
+    -> FOREIGN KEY(emp_id) REFERENCES employee(emp_id) ON DELETE SET NULL,
+    -> FOREIGN KEY(client_id) REFERENCES client(client_id) ON DELETE SET NULL
+    -> );
+ERROR 1830 (HY000): Column 'emp_id' cannot be NOT NULL: needed in a foreign key constraint 'works_with_ibfk_1' SET NULL
+mysql> SHOW TABLES
+    -> ^C
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  | MUL | NULL    |       |
+| branch_id  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> DESCRIBE BRANCH;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| branch_id      | int(11)     | NO   | PRI | NULL    |       |
+| branch_name    | varchar(40) | YES  |     | NULL    |       |
+| mgr_id         | int(11)     | YES  | MUL | NULL    |       |
+| mgr_start_date | date        | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ADD FOREIGN KEY(branch_id)
+    -> REFERENCES branch(branch_id)
+    -> ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`test`.`#sql-5854_b`, CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`branch_id`))
+mysql> Select * FROM branch;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO branch
+    -> ^C
+mysql> INSERT INTO branch
+    -> VALUES(1, 'Corporate', 100, '2006-02-09'),
+    -> (2, 'Scranton', 102, '1992-04-06'),
+    -> (3, 'Stamford', 106, '1998-02-13');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> describe branch;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| branch_id      | int(11)     | NO   | PRI | NULL    |       |
+| branch_name    | varchar(40) | YES  |     | NULL    |       |
+| mgr_id         | int(11)     | YES  | MUL | NULL    |       |
+| mgr_start_date | date        | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM branch;
++-----------+-------------+--------+----------------+
+| branch_id | branch_name | mgr_id | mgr_start_date |
++-----------+-------------+--------+----------------+
+|         1 | Corporate   |    100 | 2006-02-09     |
+|         2 | Scranton    |    102 | 1992-04-06     |
+|         3 | Stamford    |    106 | 1998-02-13     |
++-----------+-------------+--------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ADD FOREIGN KEY (branch_id)
+    -> REFERENCES branch(branch_id)
+    -> ON DELETE SET NULL;
+Query OK, 8 rows affected (0.11 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int(11)     | NO   | PRI | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| birth_date | date        | YES  |     | NULL    |       |
+| sex        | varchar(2)  | YES  |     | NULL    |       |
+| salary     | int(11)     | YES  |     | NULL    |       |
+| super_id   | int(11)     | YES  | MUL | NULL    |       |
+| branch_id  | int(11)     | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE works_with(
+    -> emp_id INT,
+    -> client_id INT,
+    -> total_sales INT
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | YES  |     | NULL    |       |
+| client_id   | int(11) | YES  |     | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO works_with(emp_id)
+    -> VALUES(105,
+    -> 102,
+    -> 108,
+    -> 107,
+    -> 108,
+    -> 105,
+    -> 107,
+    -> 102,
+    -> 105);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO works_with
+    -> VALUES (105, 400, 55000),
+    -> (102, 401, 267000),
+    -> (108, 402, 22500),
+    -> (107, 403, 5000),
+    -> (108, 403, 12000),
+    -> (105, 404, 33000),
+    -> (107, 405, 26000),
+    -> (102, 406, 15000),
+    -> (105, 406, 130000);
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM works_with;
++--------+-----------+-------------+
+| emp_id | client_id | total_sales |
++--------+-----------+-------------+
+|    105 |       400 |       55000 |
+|    102 |       401 |      267000 |
+|    108 |       402 |       22500 |
+|    107 |       403 |        5000 |
+|    108 |       403 |       12000 |
+|    105 |       404 |       33000 |
+|    107 |       405 |       26000 |
+|    102 |       406 |       15000 |
+|    105 |       406 |      130000 |
++--------+-----------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | YES  |     | NULL    |       |
+| client_id   | int(11) | YES  |     | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE works_with
+    -> ADD PRIMARY KEY (emp_id, client_id);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | NO   | PRI | NULL    |       |
+| client_id   | int(11) | NO   | PRI | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE works_with
+    -> ADD FOREIGN KEY (emp_id)
+    -> REFERENCES employee(emp_id) ON DELETE CASCADE;
+Query OK, 9 rows affected (0.06 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE works_with
+    -> ADD FOREIGN KEY (client_id) REFERENCES client(client_id) ON DELETE CASCADE;
+Query OK, 9 rows affected (0.09 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE works_with;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| emp_id      | int(11) | NO   | PRI | NULL    |       |
+| client_id   | int(11) | NO   | PRI | NULL    |       |
+| total_sales | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | NO   | PRI | NULL    |       |
+| supplier_name | varchar(50) | NO   | PRI | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE branch_supplier
+    -> ADD FOREIGN KEY (branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE;
+Query OK, 7 rows affected (0.06 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE branch_supplier;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| branch_id     | int(11)     | NO   | PRI | NULL    |       |
+| supplier_name | varchar(50) | NO   | PRI | NULL    |       |
+| supply_type   | varchar(50) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_test  |
++-----------------+
+| branch          |
+| branch_supplier |
+| client          |
+| employee        |
+| works_with      |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql>
