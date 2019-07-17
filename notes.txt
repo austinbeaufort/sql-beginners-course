@@ -2103,3 +2103,332 @@ mysql> show tables;
 5 rows in set (0.00 sec)
 
 mysql>
+mysql> SELECT first_name AS forename, last_name AS surname
+    -> FROM employee;
++----------+---------+
+| forename | surname |
++----------+---------+
+| David    | Wallace |
+| Michael  | Scott   |
+| Angela   | Martin  |
+| Kelly    | Kapoor  |
+| Stanley  | Hudson  |
+| Josh     | Porter  |
+| Andy     | Bernard |
+| Jim      | Halpert |
++----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT sex
+    -> FROM employee;
++------+
+| sex  |
++------+
+| M    |
+| F    |
++------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT branch_id
+    -> FROM employee;
++-----------+
+| branch_id |
++-----------+
+|         1 |
+|         2 |
+|         3 |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(emp_id);
+ERROR 1054 (42S22): Unknown column 'emp_id' in 'field list'
+mysql> SELECT COUNT (emp_id)
+    -> FROM employee;
+ERROR 1630 (42000): FUNCTION test.COUNT does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> SELECT COUNT(emp_id)
+    -> FROM employee;
++---------------+
+| COUNT(emp_id) |
++---------------+
+|             8 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(emp_id)
+    -> FROM employee
+    -> WHERE sex = 'F' && birth_date > '1970-01-01';
++---------------+
+| COUNT(emp_id) |
++---------------+
+|             2 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(salary)
+    -> FROM employee;
++-------------+
+| AVG(salary) |
++-------------+
+|  90750.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(salary)
+    -> FROM employee
+    -> WHERE sex = 'M';
++-------------+
+| AVG(salary) |
++-------------+
+| 101333.3333 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(salary)
+    -> FROM employee
+    -> WHERE sex = 'F';
++-------------+
+| AVG(salary) |
++-------------+
+|  59000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUM(salary)
+    -> FROM employee;
++-------------+
+| SUM(salary) |
++-------------+
+|      726000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(sex), sex
+    -> FROM employee
+    -> ;
++------------+------+
+| COUNT(sex) | sex  |
++------------+------+
+|          8 | M    |
++------------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(sex), sex
+    -> FROM employee
+    -> GROUP BY sex;
++------------+------+
+| COUNT(sex) | sex  |
++------------+------+
+|          6 | M    |
+|          2 | F    |
++------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(branch_id), branch_id
+    -> FROM employee
+    -> GROUP BY branch_id;
++------------------+-----------+
+| COUNT(branch_id) | branch_id |
++------------------+-----------+
+|                1 |         1 |
+|                4 |         2 |
+|                3 |         3 |
++------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT SUM(total_sales), emp_id
+    -> FROM works_with
+    -> GROUP BY emp_id;
++------------------+--------+
+| SUM(total_sales) | emp_id |
++------------------+--------+
+|           282000 |    102 |
+|           218000 |    105 |
+|            31000 |    107 |
+|            34500 |    108 |
++------------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT SUM(total_sales), client_id
+    -> FROM works_with
+    -> GROUP BY client_id;
++------------------+-----------+
+| SUM(total_sales) | client_id |
++------------------+-----------+
+|            55000 |       400 |
+|           267000 |       401 |
+|            22500 |       402 |
+|            17000 |       403 |
+|            33000 |       404 |
+|            26000 |       405 |
+|           145000 |       406 |
++------------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM client
+    -> WHERE client_name LIKE '%LLC';
++-----------+--------------------+-----------+
+| client_id | client_name        | branch_id |
++-----------+--------------------+-----------+
+|       403 | John Daly Law, LLC |         3 |
++-----------+--------------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM branch_supplier
+    -> WHERE supplier_name LIKE '% Label%';
++-----------+---------------------+--------------+
+| branch_id | supplier_name       | supply_type  |
++-----------+---------------------+--------------+
+|         2 | J.T. Forms & Labels | Custom Forms |
+|         3 | Stamford Labels     | Custom Forms |
++-----------+---------------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM employee
+    -> WHERE birth_date LIKE '____-10%';
+ERROR 1525 (HY000): Incorrect DATE value: '____-10%'
+mysql> SELECT *
+    -> FROM employee
+    -> WHERE birth_date LIKE '____-10%';
+ERROR 1525 (HY000): Incorrect DATE value: '____-10%'
+mysql> SELECT *
+    -> FROM client
+    -> WHERE client_name LIKE '%school%';
++-----------+--------------------+-----------+
+| client_id | client_name        | branch_id |
++-----------+--------------------+-----------+
+|       400 | Dunmore Highschool |         2 |
++-----------+--------------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT first_name
+    -> FROM employee;
++------------+
+| first_name |
++------------+
+| David      |
+| Michael    |
+| Angela     |
+| Kelly      |
+| Stanley    |
+| Josh       |
+| Andy       |
+| Jim        |
++------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT first_name
+    -> FROM employee
+    -> UNION
+    -> SELECT branch_name
+    -> FROM branch;
++------------+
+| first_name |
++------------+
+| David      |
+| Michael    |
+| Angela     |
+| Kelly      |
+| Stanley    |
+| Josh       |
+| Andy       |
+| Jim        |
+| Corporate  |
+| Scranton   |
+| Stamford   |
++------------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT first_name AS Company_names
+    -> FROM employee
+    -> ;
++---------------+
+| Company_names |
++---------------+
+| David         |
+| Michael       |
+| Angela        |
+| Kelly         |
+| Stanley       |
+| Josh          |
+| Andy          |
+| Jim           |
++---------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT client_name AS client_branch_suppliers
+    -> FROM client
+    -> UNION
+    -> SELECT supplier_name
+    -> FROM branch_supplier;
++-------------------------+
+| client_branch_suppliers |
++-------------------------+
+| Dunmore Highschool      |
+| Lackawanna County       |
+| FedEx                   |
+| John Daly Law, LLC      |
+| Scranton Whitepages     |
+| Times Newspaper         |
+| Hammer Mill             |
+| J.T. Forms & Labels     |
+| Uni-ball                |
+| Patriot Paper           |
+| Stamford Labels         |
++-------------------------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT salary
+    -> FROM employee
+    -> UNION
+    -> SELECT total_sales
+    -> FROM works_with;
++--------+
+| salary |
++--------+
+| 250000 |
+|  75000 |
+|  63000 |
+|  55000 |
+|  69000 |
+|  78000 |
+|  65000 |
+|  71000 |
+| 267000 |
+|  15000 |
+|  33000 |
+| 130000 |
+|   5000 |
+|  26000 |
+|  22500 |
+|  12000 |
++--------+
+16 rows in set (0.00 sec)
+
+mysql> INSERT INTO branch VALUES(4, 'Buffalo', NULL, NULL);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM branch;
++-----------+-------------+--------+----------------+
+| branch_id | branch_name | mgr_id | mgr_start_date |
++-----------+-------------+--------+----------------+
+|         1 | Corporate   |    100 | 2006-02-09     |
+|         2 | Scranton    |    102 | 1992-04-06     |
+|         3 | Stamford    |    106 | 1998-02-13     |
+|         4 | Buffalo     |   NULL | NULL           |
++-----------+-------------+--------+----------------+
+4 rows in set (0.00 sec)
+
+mysql>  SELECT employee.emp_id, employee.first_name, branch.branch_name
+    -> FROM employee
+    -> JOIN branch
+    -> ON employee.emp_id = branch.mgr_id;
++--------+------------+-------------+
+| emp_id | first_name | branch_name |
++--------+------------+-------------+
+|    100 | David      | Corporate   |
+|    102 | Michael    | Scranton    |
+|    106 | Josh       | Stamford    |
++--------+------------+-------------+
+3 rows in set (0.00 sec)
